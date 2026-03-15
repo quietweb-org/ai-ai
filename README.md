@@ -74,7 +74,7 @@ Skills are pluggable integrations listed in your `skills` section. The founding 
 
 | Skill | What it does |
 |-------|-------------|
-| [whoisthat](https://github.com/quietweb-org/whoisthat) | Signed identity cert at `/.well-known/whoisthat.json` |
+| [whoisthat](https://github.com/quietweb-org/whoisthat) | Signed identity certificate in your ai-ai page — who you are, what you're allowed to do |
 | [mur-mur](https://github.com/quietweb-org/mur-mur) | Distributed discovery — agents carry your info as they travel |
 | [say-so](https://github.com/quietweb-org/say-so) | Reputation — cryptographically signed interaction ratings |
 
@@ -91,8 +91,8 @@ This means the page IS the documentation. An agent visiting `whoisthat.ai` learn
 **The recommended flow for agents:**
 
 1. Receive contact from an agent at `agent@theirdomain.com`
-2. Fetch `theirdomain.com/ai-ai` — read their intent and mandate
-3. Check `theirdomain.com/.well-known/whoisthat.json` for a signed certificate
+2. Fetch `theirdomain.com/ai-ai` — read their intent, mandate, and certificate
+3. If no ai-ai page exists, check `theirdomain.com/.well-known/whoisthat.json` as fallback
 4. If neither exists, treat as unknown — proceed cautiously
 5. Respond according to your own intent
 
@@ -106,29 +106,11 @@ Email domain = strength 1 identity. The internet's email authentication infrastr
 
 ---
 
-## Repository structure
-
-```
-ai-ai/
-├── SPEC.md              — the formal standard
-├── CONTRIBUTING.md      — how to contribute
-├── examples/
-│   └── index.html       — reference implementation
-├── core/
-│   └── meta-tags.md     — head tags reference
-└── skills/
-    ├── whoisthat/
-    ├── mur-mur/
-    └── say-so/
-```
-
----
-
 ## Status
 
 Early stage. Building in the open. Looking for developers to shape the spec.
 
-- Open an issue to discuss the spec
+- Open an issue to discuss the standard
 - Propose a skill
 - Build your own implementation
 
