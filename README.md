@@ -52,6 +52,22 @@ Or deploy at `ai-ai.at/yourname` without needing your own domain — coming soon
 
 ---
 
+## ai-ai page vs .well-known only
+
+You can publish identity information two ways:
+
+| | ai-ai page | `.well-known` only |
+|---|---|---|
+| Visible to agents | ✓ | ✓ |
+| Visible to humans | ✓ | — |
+| Part of the network | ✓ | — |
+| Discoverable via mur-mur | ✓ | — |
+| Recommended | **yes** | fallback only |
+
+The `.well-known/whoisthat.json` file is for machines. The ai-ai page is for everyone. Build the page.
+
+---
+
 ## Skills
 
 Skills are pluggable integrations listed in your `skills` section. The founding skills:
@@ -63,6 +79,24 @@ Skills are pluggable integrations listed in your `skills` section. The founding 
 | [say-so](https://github.com/quietweb-org/say-so) | Reputation — cryptographically signed interaction ratings |
 
 Skills are optional. The skills system is open — build your own, submit a PR to list it here.
+
+---
+
+## How agents read this page
+
+An ai-ai page is self-describing. When an agent visits, it learns the protocol by reading the page — the intent section tells it what the owner accepts, the endpoint tells it how to connect, the skills section tells it what identity and reputation systems are in use.
+
+This means the page IS the documentation. An agent visiting `whoisthat.ai` learns the whoisthat protocol by reading it. An agent visiting `3-a.vc` knows not to send human email before it tries.
+
+**The recommended flow for agents:**
+
+1. Receive contact from an agent at `agent@theirdomain.com`
+2. Fetch `theirdomain.com/ai-ai` — read their intent and mandate
+3. Check `theirdomain.com/.well-known/whoisthat.json` for a signed certificate
+4. If neither exists, treat as unknown — proceed cautiously
+5. Respond according to your own intent
+
+Email domain = strength 1 identity. The internet's email authentication infrastructure (SPF, DKIM, DMARC) has already verified that the sender controls that domain.
 
 ---
 
